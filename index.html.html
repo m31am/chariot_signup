@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Chariot Racing Academy — Apply</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Rajdhani:wght@500;600;700&family=Space+Mono:wght@400;700&family=Inter:wght@400;500;600&display=swap');
+
+  :root{
+    --black:#0B0B0B;
+    --black-2:#161616;
+    --red:#7A1620;
+    --red-bright:#A8222F;
+    --gold:#FFC72C;
+    --white:#F5F3EE;
+    --muted:#8B8780;
+    --line:#2A2826;
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0;
+    background:var(--black);
+    color:var(--white);
+    font-family:'Inter',sans-serif;
+    -webkit-font-smoothing:antialiased;
+  }
+  h1,h2,h3,.display{
+    font-family:'Rajdhani',sans-serif;
+    text-transform:uppercase;
+    letter-spacing:0.02em;
+  }
+  .mono{font-family:'Space Mono',monospace;}
+
+  .wrap{max-width:760px;margin:0 auto;padding:0 24px;}
+
+  /* HERO */
+  .hero{
+    padding:64px 24px 40px;
+    text-align:center;
+    border-bottom:1px solid var(--line);
+    background:
+      radial-gradient(ellipse at 50% -10%, rgba(168,34,47,0.18), transparent 60%);
+  }
+  .lights{
+    display:flex;justify-content:center;gap:14px;margin-bottom:28px;
+  }
+  .light{
+    width:18px;height:18px;border-radius:50%;
+    background:#222;
+    box-shadow:inset 0 0 0 2px #333;
+    animation:fire 2.4s infinite;
+  }
+  .light:nth-child(1){animation-delay:0s;}
+  .light:nth-child(2){animation-delay:0.3s;}
+  .light:nth-child(3){animation-delay:0.6s;}
+  .light:nth-child(4){animation-delay:0.9s;}
+  .light:nth-child(5){animation-delay:1.2s;}
+  @keyframes fire{
+    0%,55%{background:#222;box-shadow:inset 0 0 0 2px #333;}
+    60%,80%{background:var(--red-bright);box-shadow:0 0 14px var(--red-bright);}
+    85%,100%{background:var(--gold);box-shadow:0 0 14px var(--gold);}
+  }
+  .eyebrow{
+    font-family:'Space Mono',monospace;
+    font-size:12px;
+    color:var(--gold);
+    letter-spacing:0.18em;
+    margin-bottom:14px;
+  }
+  .hero h1{
+    font-size:clamp(32px,7vw,56px);
+    line-height:1.05;
+    margin:0 0 16px;
+    color:var(--white);
+  }
+  .hero h1 span{color:var(--gold);}
+  .hero p{
+    color:var(--muted);
+    font-size:16px;
+    max-width:480px;
+    margin:0 auto 28px;
+  }
+  .cta-btn{
+    display:inline-block;
+    background:var(--gold);
+    color:var(--black);
+    font-family:'Rajdhani',sans-serif;
+    font-weight:700;
+    text-transform:uppercase;
+    letter-spacing:0.04em;
+    font-size:16px;
+    padding:14px 36px;
+    border:none;
+    border-radius:2px;
+    cursor:pointer;
+    transition:transform 0.15s ease, box-shadow 0.15s ease;
+  }
+  .cta-btn:hover{transform:translateY(-2px);box-shadow:0 8px 20px rgba(201,162,39,0.3);}
+  .cta-btn:focus-visible{outline:2px solid var(--gold);outline-offset:3px;}
+  .cta-btn:disabled{opacity:0.6;cursor:not-allowed;}
+
+  /* STATS STRIP */
+  .stats{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    border-bottom:1px solid var(--line);
+  }
+  .stat{
+    padding:22px 8px;
+    text-align:center;
+    border-right:1px solid var(--line);
+  }
+  .stat:last-child{border-right:none;}
+  .stat .num{
+    font-family:'Space Mono',monospace;
+    font-size:clamp(18px,4vw,26px);
+    color:var(--gold);
+  }
+  .stat .label{
+    font-size:11px;
+    color:var(--muted);
+    text-transform:uppercase;
+    letter-spacing:0.08em;
+    margin-top:4px;
+  }
+
+  /* SEATS COUNTER */
+  .seats-bar{
+    background:var(--black-2);
+    border-bottom:1px solid var(--line);
+    padding:18px 24px;
+    text-align:center;
+  }
+  .seats-bar .mono{font-size:14px;color:var(--muted);}
+  .seats-bar .count{color:var(--gold);font-weight:700;}
+  .seats-track{
+    height:6px;background:var(--line);border-radius:3px;margin-top:10px;
+    max-width:300px;margin-left:auto;margin-right:auto;overflow:hidden;
+  }
+  .seats-fill{
+    height:100%;background:linear-gradient(90deg,var(--red),var(--gold));
+    transition:width 0.4s ease;
+  }
+
+  /* BENEFITS */
+  .section{padding:56px 24px;}
+  .section h2{
+    font-size:clamp(22px,4vw,30px);
+    margin:0 0 8px;
+  }
+  .section .sub{color:var(--muted);font-size:14px;margin-bottom:32px;}
+  .benefits{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:1px;
+    background:var(--line);
+    border:1px solid var(--line);
+  }
+  .benefit{
+    background:var(--black-2);
+    padding:20px;
+  }
+  .benefit .tag{
+    font-family:'Space Mono',monospace;
+    font-size:11px;color:var(--red-bright);
+    margin-bottom:8px;display:block;
+  }
+  .benefit h3{font-size:16px;margin:0 0 6px;color:var(--white);}
+  .benefit p{font-size:13px;color:var(--muted);margin:0;line-height:1.5;}
+  @media(max-width:560px){.benefits{grid-template-columns:1fr;}}
+
+  /* FORM */
+  .form-section{
+    background:var(--black-2);
+    border-top:1px solid var(--line);
+  }
+  form{display:flex;flex-direction:column;gap:18px;margin-top:24px;}
+  .row2{display:grid;grid-template-columns:1fr 1fr;gap:18px;}
+  @media(max-width:560px){.row2{grid-template-columns:1fr;}}
+  label{
+    display:block;font-size:12px;text-transform:uppercase;
+    letter-spacing:0.06em;color:var(--muted);margin-bottom:6px;
+    font-family:'Space Mono',monospace;
+  }
+  input,select,textarea{
+    width:100%;
+    background:var(--black);
+    border:1px solid #3A3735;
+    color:var(--white);
+    padding:12px 14px;
+    font-family:'Inter',sans-serif;
+    font-size:14px;
+    border-radius:2px;
+  }
+  input:focus,select:focus,textarea:focus{
+    outline:none;border-color:var(--gold);
+  }
+  textarea{resize:vertical;min-height:80px;}
+  .field-error{color:var(--red-bright);font-size:12px;margin-top:4px;display:none;}
+  .submit-row{margin-top:8px;}
+  .disclaimer{font-size:11px;color:var(--muted);margin-top:10px;}
+
+  .success{
+    display:none;
+    text-align:center;
+    padding:40px 24px;
+  }
+  .success.show{display:block;}
+  .success h2{color:var(--gold);}
+  .success p{color:var(--muted);}
+
+  .footer{
+    text-align:center;padding:28px;color:var(--muted);font-size:12px;
+    font-family:'Space Mono',monospace;
+  }
+</style>
+</head>
+<body>
+
+  <div class="hero">
+    <div class="lights">
+      <div class="light"></div><div class="light"></div><div class="light"></div>
+      <div class="light"></div><div class="light"></div>
+    </div>
+    <div class="eyebrow mono">CHARIOT RACING ACADEMY · COHORT 01</div>
+    <h1>15 SEATS.<br>ONE <span>EV RACE CAR.</span><br>A REAL PATH TO F1.</h1>
+    <p>The first EV formula car built in MENA. A 12-month FIA-aligned pathway. Ages 15–20.</p>
+    <button class="cta-btn" onclick="document.getElementById('apply').scrollIntoView({behavior:'smooth'})">Apply for a seat</button>
+  </div>
+
+  <div class="stats">
+    <div class="stat"><div class="num">15</div><div class="label">Seats per cohort</div></div>
+    <div class="stat"><div class="num">12 mo</div><div class="label">Full program length</div></div>
+    <div class="stat"><div class="num">3 mo</div><div class="label">Fully funded Jeddah camp</div></div>
+    <div class="stat"><div class="num">15–20</div><div class="label">Age range</div></div>
+  </div>
+
+  <div class="seats-bar">
+    <div class="mono">SEATS REMAINING: <span class="count" id="seatsCount">15 / 15</span></div>
+    <div class="seats-track"><div class="seats-fill" id="seatsFill" style="width:100%"></div></div>
+  </div>
+
+  <div class="section">
+    <h2>What you get</h2>
+    <div class="sub">A full development program. Not a course — a pipeline.</div>
+    <div class="benefits">
+      <div class="benefit"><span class="tag">01 / TRAIN</span><h3>Weekly sim racing</h3><p>At partner sim centers, identical hardware spec, every driver trains on the same conditions.</p></div>
+      <div class="benefit"><span class="tag">02 / LEARN</span><h3>Monthly workshops</h3><p>Tyre behaviour, telemetry, race craft, engineering fundamentals.</p></div>
+      <div class="benefit"><span class="tag">03 / BUILD</span><h3>Fitness + psychology</h3><p>Racing-specific fitness program and monthly sports psychology coaching.</p></div>
+      <div class="benefit"><span class="tag">04 / CAMP</span><h3>Jeddah, fully funded</h3><p>3-month intensive camp — track, accommodation, meals, transport all covered.</p></div>
+      <div class="benefit"><span class="tag">05 / RACE</span><h3>Real telemetry coaching</h3><p>Individual data debrief with an engineer after every track session.</p></div>
+      <div class="benefit"><span class="tag">06 / SCOUTED</span><h3>Grand Finale</h3><p>Race in front of F4 team scouts. Top 3 get a private evaluation session.</p></div>
+    </div>
+  </div>
+
+  <div class="form-section">
+    <div class="section" id="apply">
+      <div id="formWrap">
+        <h2>Apply now</h2>
+        <div class="sub">Takes 2 minutes. We review applications on a rolling basis.</div>
+        <form id="applyForm" action="https://formspree.io/f/xeebodkr" method="POST">
+          <div class="row2">
+            <div>
+              <label for="fullName">Full name</label>
+              <input type="text" id="fullName" name="Full Name" required>
+            </div>
+            <div>
+              <label for="age">Age</label>
+              <input type="number" id="age" name="Age" min="15" max="20" required>
+              <div class="field-error" id="ageError">Program is open to ages 15–20.</div>
+            </div>
+          </div>
+          <div class="row2">
+            <div>
+              <label for="country">Country</label>
+              <input type="text" id="country" name="Country" required>
+            </div>
+            <div>
+              <label for="city">City</label>
+              <input type="text" id="city" name="City" required>
+            </div>
+          </div>
+          <div class="row2">
+            <div>
+              <label for="email">Email</label>
+              <input type="email" id="email" name="Email" required>
+            </div>
+            <div>
+              <label for="phone">Phone (WhatsApp preferred)</label>
+              <input type="tel" id="phone" name="Phone" required>
+            </div>
+          </div>
+          <div>
+            <label for="experience">Racing / karting experience</label>
+            <select id="experience" name="Experience" required>
+              <option value="">Select one</option>
+              <option>No formal experience — sim racing only</option>
+              <option>Karting — club level</option>
+              <option>Karting — competitive / regional</option>
+              <option>Formula-style or other motorsport experience</option>
+            </select>
+          </div>
+          <div>
+            <label for="motivation">Why do you want a seat in Chariot? (short answer)</label>
+            <textarea id="motivation" name="Motivation" required></textarea>
+          </div>
+          <div class="submit-row">
+            <button type="submit" class="cta-btn">Submit application</button>
+          </div>
+          <div class="disclaimer">By submitting, you agree to be contacted by Chariot Racing Academy about your application.</div>
+        </form>
+      </div>
+
+      <div class="success" id="successMsg">
+        <h2>YOU'RE IN THE GRID 🏁</h2>
+        <p>Your application has been received. Our team will reach out by email or WhatsApp with next steps.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer">CHARIOT RACING ACADEMY · MENA &amp; AFRICA · COHORT 01</div>
+
+<script>
+  /* ============================================================
+     FORM BACKEND: Formspree
+     This form POSTs real submissions to Formspree, which emails
+     every application straight to your inbox.
+
+     SETUP (one-time):
+     1. Go to https://formspree.io and sign up (free tier works).
+     2. Create a new form, copy the form endpoint it gives you
+        (looks like https://formspree.io/f/abcd1234).
+     3. Replace YOUR_FORM_ID in the <form action="..."> tag above
+        with your real endpoint.
+     4. Formspree will send a one-time confirmation email the
+        first time you submit the form for real — confirm it,
+        and every submission after that lands in your inbox.
+
+     The "seats remaining" counter below still uses localStorage
+     just for a live visual effect on each visitor's own device —
+     it does NOT reflect your real total applicant count across
+     everyone who visits the page. Check your Formspree dashboard
+     or inbox for the real number.
+     ============================================================ */
+
+  const TOTAL_SEATS = 15;
+  const STORAGE_KEY = 'chariot_applicants';
+
+  function getApplicants(){
+    try{
+      return JSON.parse(localStorage.getItem(STORAGE_KEY)) || [];
+    }catch(e){
+      return [];
+    }
+  }
+
+  function refreshSeats(){
+    const count = getApplicants().length;
+    const remaining = Math.max(TOTAL_SEATS - count, 0);
+    document.getElementById('seatsCount').textContent = remaining + ' / ' + TOTAL_SEATS;
+    document.getElementById('seatsFill').style.width = ((remaining/TOTAL_SEATS)*100) + '%';
+  }
+  refreshSeats();
+
+  function markLocalSubmission(){
+    const applicants = getApplicants();
+    applicants.push({submittedAt: new Date().toISOString()});
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(applicants));
+  }
+
+  document.getElementById('applyForm').addEventListener('submit', async function(e){
+    e.preventDefault();
+
+    const age = parseInt(document.getElementById('age').value, 10);
+    const ageError = document.getElementById('ageError');
+    if(age < 15 || age > 20 || isNaN(age)){
+      ageError.style.display = 'block';
+      return;
+    }
+    ageError.style.display = 'none';
+
+    const form = document.getElementById('applyForm');
+    const submitBtn = form.querySelector('button[type="submit"]');
+    submitBtn.disabled = true;
+    submitBtn.textContent = 'Submitting...';
+
+    try{
+      const response = await fetch(form.action, {
+        method: 'POST',
+        body: new FormData(form),
+        headers: { 'Accept': 'application/json' }
+      });
+
+      if(response.ok){
+        markLocalSubmission();
+        document.getElementById('formWrap').style.display = 'none';
+        document.getElementById('successMsg').classList.add('show');
+        refreshSeats();
+      }else{
+        alert('Something went wrong submitting your application. Please try again.');
+        submitBtn.disabled = false;
+        submitBtn.textContent = 'Submit application';
+      }
+    }catch(err){
+      alert('Something went wrong submitting your application. Please check your connection and try again.');
+      submitBtn.disabled = false;
+      submitBtn.textContent = 'Submit application';
+    }
+  });
+</script>
+</body>
+</html>
